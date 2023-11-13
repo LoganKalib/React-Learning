@@ -1,6 +1,6 @@
 import compImg from "./assets/components.png";
-import Header from "./components/Header";
-import CoreConcept from "./components/CoreConcepts";
+import Header from "./components/Header/Header";
+import CoreConcept from "./components/CoreConcepts/CoreConcepts";
 
 // we import the array that is defined in data file
 import { CORE_CONCEPTS } from "./data";
