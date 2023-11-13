@@ -1,4 +1,5 @@
 import reactImg from "../assets/react-core-concepts.png";
+import "./Header.css";
 
 const descriptions = ["Fundamentals", "Crucial", "core"];
 const getItem = (max) => Math.floor(Math.random() * (max + 1));
