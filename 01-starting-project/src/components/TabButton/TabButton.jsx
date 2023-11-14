@@ -1,3 +1,5 @@
+import './TabButton.css';
+
 export default function TabButton({ children, onSelect, isSelected }) {
   return (
     <li>

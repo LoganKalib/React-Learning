@@ -1,6 +1,7 @@
 import TabButton from "../TabButton/TabButton";
 import { useState } from "react";
 import { EXAMPLES } from "../../data";
+import "./Examples.css";
 
 export default function Examples() {
   //must be called inside components or other hooks
