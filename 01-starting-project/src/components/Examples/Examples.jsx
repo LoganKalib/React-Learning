@@ -23,7 +23,6 @@ export default function Examples() {
   return (
     <Section title="Examples" id="examples">
       <Tab
-        container="menu"
         buttons={
           <>
             {/* we can see how the children prop, allows for text in between the tag. this is known as component composition*/}
