@@ -1,7 +1,11 @@
 import TabButton from "../TabButton/TabButton";
-import { useState } from "react";
 import { EXAMPLES } from "../../data";
 import "./Examples.css";
+
+// so to make the UI change with updates we need to use react state and hooks
+// this is a type of variable that react will watch for changes and update the UI
+// functions that start with "use" are known as hooks
+import { useState } from "react";
 
 export default function Examples() {
   //must be called inside components or other hooks
