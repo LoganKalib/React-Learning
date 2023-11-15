@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-export default function Player({ name, symbol, isActive }) {
+export default function Player({ name, symbol, isActive, onChangeName }) {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(name);
 
   //when changing the state based on the old state, its best practice to pass a function, it will take the old state as a parameter
   function handleEditClick() {
     setIsEditing((editing) => !editing);
+    isEditing && onChangeName(symbol, playerName);
   }
 
   // we accept the event created by the onChange
