@@ -5,17 +5,18 @@ import GameOver from "./Components/GameOver/GameOver";
 import { useState } from "react";
 import { WINNING_COMBINATIONS } from "./Winning_combinations";
 
+//this is our default players and default game board
 const PLAYERS = {
   X: "Player 1",
   O: "Player 2",
 };
-
 const INITIAL_GAMEBOARD = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
 ];
 
+//this sets the current player, by taking in all the turns and seeing what the last turn was
 function derivedActivePlayer(gameTurns) {
   let currPlayer = "X";
 
@@ -25,6 +26,7 @@ function derivedActivePlayer(gameTurns) {
   return currPlayer;
 }
 
+// this sets the value immutably of our initial gameboard, by looping through the turns and the plotting them
 function derivedGameBoard(gameTurns) {
   let gameBoard = [...INITIAL_GAMEBOARD.map((array) => [...array])];
 
@@ -37,6 +39,7 @@ function derivedGameBoard(gameTurns) {
   return gameBoard;
 }
 
+// this tests to see if the gameboard meets any of the win conditions
 function derivedWinner(gameBoard, player) {
   let winner;
   for (const combo of WINNING_COMBINATIONS) {
@@ -57,14 +60,18 @@ function derivedWinner(gameBoard, player) {
 }
 
 function App() {
+  //here is our state
   const [gameTurns, setGameTurns] = useState([]);
   const [player, setPlayers] = useState(PLAYERS);
 
+  // we can see them being passed to the helper functions defined above
   const activePlayer = derivedActivePlayer(gameTurns);
   const gameBoard = derivedGameBoard(gameTurns);
   const winner = derivedWinner(gameBoard, player);
   const hasDraw = gameTurns.length === 9 && !winner;
 
+  //this section takes in the row and col of the square cicked,
+  // updates the gameTurns with a object that stores the row, col and player that clicked
   function handleSelectSquare(row, col) {
     setGameTurns((preTurns) => {
       const curPlayer = derivedActivePlayer(preTurns);
@@ -78,10 +85,12 @@ function App() {
     });
   }
 
+  //resets to default state
   function handleRematch() {
     setGameTurns([]);
   }
 
+  //the below updates a certain player with the new name entered
   function handlePlayerName(symbol, newName) {
     setPlayers((prePlayers) => {
       return {
@@ -94,6 +103,7 @@ function App() {
   return (
     <main>
       <div id="game-container">
+        {/*this is the player name section*/}
         <ol id="players" className="highlight-player">
           <Player
             name={PLAYERS.X}
@@ -108,11 +118,13 @@ function App() {
             onChangeName={handlePlayerName}
           />
         </ol>
+        {/*this is the rematch screen and main gameboard */}
         {(winner || hasDraw) && (
           <GameOver winner={winner} onRestart={handleRematch} />
         )}
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
       </div>
+      
       <Log turns={gameTurns} />
     </main>
   );

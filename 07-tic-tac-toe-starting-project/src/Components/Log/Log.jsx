@@ -1,3 +1,4 @@
+// this method takes in all the turns and displays them dynamically
 export default function Log({ turns }) {
   return (
     <ol id="log">

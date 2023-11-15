@@ -1,3 +1,4 @@
+// in this function all we do is recieve the name of the winner and the restart method
 export default function GameOver({ winner, onRestart }) {
   return (
     <div id="game-over">

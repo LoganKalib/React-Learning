@@ -1,3 +1,4 @@
+// this is the main game board it renders what we see
 export default function GameBoard({ onSelectSquare, board }) {
   return (
     <ol id="game-board">
