@@ -2,8 +2,40 @@ import { calculateInvestmentResults, formatter } from "../util/investment";
 
 function TableBody({ states }) {
   const resultArray = calculateInvestmentResults(states);
-  console.log(resultArray);
-  return <tbody></tbody>;
+  const initInvest =
+    resultArray[0].valueEndOfYear -
+    resultArray[0].interest -
+    resultArray[0].annualInvestment;
+
+  function total(endOfYear, annualInvestment, year) {
+    const total = endOfYear - annualInvestment * year - initInvest;
+    return total;
+  }
+
+  if (resultArray) {
+    return (
+      <tbody>
+        {resultArray.map((item) => (
+          <tr key={item.year}>
+            <td>{item.year}</td>
+            <td>{formatter.format(item.valueEndOfYear)}</td>
+            <td>{formatter.format(item.interest)}</td>
+            <td>
+              {formatter.format(
+                total(item.valueEndOfYear, item.annualInvestment, item.year)
+              )}
+            </td>
+            <td>
+              {formatter.format(
+                item.valueEndOfYear -
+                  total(item.valueEndOfYear, item.annualInvestment, item.year)
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    );
+  }
 }
 
 export default function ResultSet({ states }) {
