@@ -57,7 +57,7 @@ function Quiz() {
         answers={QUESTIONS[activeQuestionIndex].answers}
         onSelectAnswer={handleSelectedAnswer}
         answerState={answerState}
-        selectedAnswer={userAnswer[userAnswer.legth - 1]}
+        selectedAnswer={userAnswer[userAnswer.length - 1]}
         onSkipAnswer={handleSkipAnswer}
       />
     </div>
